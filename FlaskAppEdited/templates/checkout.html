@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link type="text/css" href="index.css" rel="stylesheet">
+</head>
+ 
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <div class="container">
+    {% if not checkedOut %}
+        <center>
+            <h1>Checkout</h1>
+        </center>
+
+        <br>
+        <h3>Payment Information</h3>
+        <form action="{{ url_for('checkout') }}" method='POST'>
+            Payment Type: <select name='PaymentType'>
+                <option value='Credit Card'>Credit Card</option>
+                <option value='Debit Card'>Debit Card</option>
+                <option value='Gift Card'>Gift Card</option>
+            </select>
+            Card Number: <input type='number' name='CardNumber' required minlength="14" maxlength="19">
+            Card Expiration Date (Format MM/YYYY): <input type='text' name='CardExpiryDate' required minlength="7" maxlength="7">
+            
+            <br>
+            <br>
+            <br>
+            <h3>Shipping Information</h3>
+            (Items will be shipped to the address associated with your account)
+            <br>
+            Shipment Type: <select name='ShipmentType'>
+                <option value='Economy'>Economy, $2.99</option>
+                <option value='Express'>Express, $5.99</option>
+                <option value='One Day'>One Day, $14.99</option>
+            </select>
+            <br>
+            <br>
+            <input type="submit" value="Submit Order">
+        </form>
+        {% endif %}
+        {% if checkedOut %}
+        <center>
+        <h2><b>Checkout successful!</b></h2>
+        </center>
+        {% endif %}
+        <footer class="footer" align="right" style="margin-right: 10px">
+                <p>&copy; Shop.com 2019</p>
+            </footer>
+ 
+    </div>
+    {% endblock %}
+</body>
+ 
+</html>
+
+<style>
+
+    #backtohomepagebutton {
+        background-color: white;
+        border-radius: 2px;
+        border-color: black;
+        margin: 5px;
+    }
+        label {
+            margin-right: 15px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 10px
+        }
+        
+        html {
+            height: 100%;
+        }
+        
+        body {
+            background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+        }
+    </style>

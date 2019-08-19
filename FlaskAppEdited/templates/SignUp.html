@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Shop.com</title>
+ 
+ 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link type="text/css" href="index.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+
+ 
+ 
+</head>
+ 
+<body>
+    {% extends "template.html" %}
+    {% block content %} 
+
+    <div class="container">
+ 
+            <div class="jumbotron" align="center" style="background-color: rgb(86, 148, 242); font-family: 'Pacifico', Helvecta, sans-serif;">
+                    <h1 style="font-size: 75px">Sign up for Shop.com!</h1>
+                </div>
+        <p><b>{%if existingCustomer %}Customer ID already exists, please pick another{% endif %}</b></p>
+        <p><b>{%if nonexistingCustomer %}Account created! Please sign in to use the site.{% endif %}</b></p>
+			            
+            <form action="{{url_for('signup') }}" method="POST">
+            <label for="cidsignup">Customer ID:</label>
+            <input id="cidsignup" type="text" name="cidsignup" required>
+            <br>
+            <label for="firstname">First Name:</label>
+            <input id="firstname" type="text" name="firstname" maxlength="15">
+            <br>
+            <label for="lastname">Last Name:</label>
+            <input id="lastname" type="text" name="lastname" required maxlength="15">
+            <br>
+            <label for="phonenumber">Phone Number: </label>
+            <input id="phonenumber" type="text" name="phonenumber" maxlength="14" minlength="7">
+            <br>
+            <label for="emailaddress">Email Address:</label>
+            <input id="emailaddress" type="text" name="emailaddress" required maxlength="30">
+            <br>
+            <label for="address">Address:</label>
+            <input id="address" type="text" name="address" maxlength="100">
+            <br>
+            <input type="submit" value="Sign Up">
+        </form>
+        <!-- <a href="/" class="btn btn-default" id="backtohomepagebutton">Go back to home page</a> -->
+        
+		
+        <footer class="footer" align="right">
+                <p>&copy; Shop.com 2019</p>
+            </footer>
+ 
+    </div>
+    <!-- <p id="existingCustomerPlaceholder" style="display: none">{{existingCustomer}}</p> -->
+{% endblock %}
+</body>
+ 
+</html>
+
+<style>
+
+    #backtohomepagebutton {
+        background-color: white;
+        border-radius: 2px;
+        border-color: black;
+        margin: 5px;
+    }
+        label {
+            margin-right: 15px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 10px
+        }
+        
+        html {
+            height: 100%;
+        }
+        
+        body {
+            background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+        }
+    </style>
+
+<!-- <script>
+    if (document.getElementById("existingCustomerPlaceholder").innerHTML == "true") {
+            alert("That customerid already exists, please choose another.");
+    }
+</script> -->

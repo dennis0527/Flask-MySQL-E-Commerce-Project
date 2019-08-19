@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Login</title>
+    </head>
+    <body>
+        {% extends "template.html" %}
+        {% block content %}
+        {% if failed %}
+			<h2 align="center"><font color='red'>EmployeeID not recognized, please try again.</font></h2>
+        {% endif %}
+        
+        
+        {% if logged %}
+        <center>
+        <h1>Logged in successfully. Please proceed to the Admin Dashboard below.</h1>
+        <br>
+        <a href='admin' class="btn btn-default" id="backtohomepagebutton">Go to Admin Dashboard</a>
+        </center>
+        {% else %}
+        
+        
+        <h1 align="center">Please login with your Employee ID</h1>
+        
+        <center>
+        <form action="{{ url_for('adminLogin')}}" method ='POST'>
+        EmployeeID: <input type="number" name='EmployeeID' min='1' required>
+        
+        <input type="submit" value="Login">
+        </form>
+            
+        <br>
+        <br>
+        <!--MIGHT NOT BRING YOU TO INDEX.HTML-->
+        <!-- <a href="/">Back to Homepage</a> -->
+        
+        {% endif %}
+        
+        
+        <footer class="footer" align="right">
+                <p>&copy; Shop.com 2019</p>
+            </footer>
+    {% endblock %}
+    </body>
+</html>
+
+<style>	
+    html {
+	height: 100%;
+    }
+	
+    body {
+	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    }
+</style>

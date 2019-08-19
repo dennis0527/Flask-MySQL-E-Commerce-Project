@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Customer Reviews</title>
+ 
+ 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link type="text/css" href="index.css" rel="stylesheet">
+
+ 
+</head>
+
+
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <!-- <a href="index">Return to Homepage</a> -->
+    
+    <center>
+        <h1>Customer Reviews</h1>
+        
+        {% if reviewed %}
+        <h3>Showing reviews for {{ reviewName[0][0] }}</h3>
+        <table id ="reviewTable">
+            <tr>
+                <th>CustomerID</th>
+                <th>Seller</th>
+                <th>Rating</th>
+                <th>Detailed Review</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                {% for attribute in item %}
+                <td>{{attribute}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="review">See reviews for another article?</a>
+        
+        
+        {% else %}
+        <font size="5"><a href="reviewAdd" class="btn btn-default" id="backtohomepagebutton">Click here to write a review for an article</a></font>
+        <br>
+        <br>
+        
+        <h3>Which article would you like to see reviews for?</h3>
+        <form action="{{ url_for('review')}}" method ='POST'>
+            ArticleID:
+            <select name='ArticleID'>
+            {% for item in items %}
+                <option>{{item[0]}}</option>
+            {% endfor %}
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+        <br>
+        
+    
+        <table id = "articleTable">
+            <tr>
+                <th>ArticleID</th>
+                <th>Article Name</th>
+                <th>Seller</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                {% for attribute in item %}
+                <td>{{attribute}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        
+        {% endif %}
+    </center>
+    <footer class="footer" align="right" style="margin-right: 10px">
+            <p>&copy; Shop.com 2019</p>
+        </footer>
+{% endblock %}
+
+</body>
+</html>
+ 
+ <style>
+
+	
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 10px
+    }
+	
+	html {
+		height: 100%;
+	}
+	
+	body {
+		background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+	}
+</style>

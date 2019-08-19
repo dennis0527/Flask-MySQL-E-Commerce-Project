@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add a Product</title>
+    </head>
+    <body>
+        {% extends "template.html" %}
+        {% block content %}
+		{% if updated %}
+			<h2 align="center"><font color='red'>{{ updateName }} has been added or updated in the inventory.</font></h2>
+        {% endif %}
+        <h1 align="center">Add/Update a Product</h1>
+        <h2 align="center">What product would you like to update in the inventory?</h2>
+        <h4 align='center'>*Note that if the item is already in the inventory, it will be updated accordingly*</h4>
+        
+    <center>
+        <form action="{{ url_for('adminAdd')}}" method ='POST'>
+            ArticleID: <input type="text" name='ArticleID' required>
+            Article Name: <input type='text' name='ArticleName' required maxlength="20">
+            Seller: <input type='text' name='Seller' required maxlength="20">
+            <br>
+            Category: <select name='Category'>
+                <option value='None'>None</option>
+                <option value='Clothing'>Clothing</option>
+                <option value='Furniture'>Furniture</option>
+                <option value='Electronics'>Electronics</option>
+            </select>
+            Price: <input type='number' name='Price' step='.01' min='0' max='9999.99' required>
+            Quantity: <input type='number' name='Quantity' step='1' min='0' required>
+            <input type="submit" value="Update">
+        </form>
+    
+    <br>
+    <br>
+    <a href="admin" class="btn btn-default" id="backtohomepagebutton">Back to Admin Dashboard</a>
+    </center>
+    
+    <br>
+    <h2 align="center">Product List</h2>   
+            <table id = "articleTable" align="center">
+                <tr>
+                    <th>ArticleID</th>
+                    <th>Article Name</th>
+                    <th>Seller</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                
+                {% for item in items %}
+                <tr>
+                    {% for attribute in item %}
+                    <td>{{attribute}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        
+        
+        
+            <footer class="footer" align="right">
+                    <p>&copy; Shop.com 2019</p>
+                </footer>
+    {% endblock %}
+    </body>
+</html>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 10px
+    }
+	
+    html {
+	height: 100%;
+    }
+	
+    body {
+	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    }
+</style>

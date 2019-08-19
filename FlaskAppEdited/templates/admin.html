@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Dashboard</title>
+    </head>
+    <body>
+        {% extends "template.html" %}
+        {% block content %}
+        <h1 align="center">Welcome to the Admin Dashboard!</h1>
+        <h2 align="center">What would you like to do?</h2>
+        
+        <p align="center">
+        <a href="adminAdd" class="btn btn-default" id="backtohomepagebutton">Add Products to Inventory</a>
+        <br>
+        <a href="adminRemove" class="btn btn-default" id="backtohomepagebutton">Remove Products from Inventory</a>
+        </p>
+		<center><a href="index" class="btn btn-default" id="backtohomepagebutton">Back to Customer Homepage</a></center>
+        
+        <br>
+        <h2 align="center">Product List</h2>   
+            <table id = "articleTable" align="center">
+                <tr>
+                    <th>ArticleID</th>
+                    <th>Article Name</th>
+                    <th>Seller</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                
+                {% for item in items %}
+                <tr>
+                    {% for attribute in item %}
+                    <td>{{attribute}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        
+        
+        
+            <footer class="footer" align="right">
+                    <p>&copy; Shop.com 2019</p>
+                </footer>
+    {% endblock %}
+    </body>
+</html>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 10px
+    }
+	
+    html {
+	height: 100%;
+    }
+	
+    body {
+	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    }
+</style>

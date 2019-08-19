@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Shopping Cart</title>
+ 
+ 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link type="text/css" href="index.css" rel="stylesheet">
+
+ 
+</head>
+
+
+<body>
+	{% extends "template.html" %}
+	{% block content %}
+	<!--MIGHT NOT BRING YOU TO INDEX.HTML-->
+	<!-- <a href="/" class="btn btn-default" id="backtohomepagebutton">Return to Homepage</a> -->
+
+	<h1 align="center">Shopping Cart</h1>
+	{% if removed %}
+	<center><h3>{{name}} successfully removed from cart!</h3></center>
+	{% endif %}
+	
+	<center>
+	<table id="cartTable">
+	<tr>
+		<th>Article ID</th>
+		<th>Article Name</th>
+		<th>Price Per Item</th>
+		<th>Quantity</th>
+	</tr>
+	{% for item in items %}
+        <tr>
+            {% for attribute in item %}
+                <td>{{attribute}}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+	</table>
+	{% if not exists %}<br><h4>Your shopping cart is empty.</h4>{% endif %}
+	</center>
+	
+	<br>
+	<br>	
+	{% if exists %}
+	<center>
+	<h3>Remove item from cart:</h3>
+	<form action="{{url_for('cart') }}" method="POST">
+		ArticleID:
+		<select id="articleidselect" name="inputAID">
+			{% for item in items %}
+			<option>{{item[0]}}</option>
+			{% endfor %}
+		</select>
+			<input type="submit" value="Remove">
+			</form>
+		</center>
+		<br>
+	<h4 align="right" style="margin-right: 20px">Subtotal: ${{total[0][0]}}</h4>
+	{% else %} <h4 align="right" style="margin-right: 20px">Subtotal: $0</h4>
+	{% endif %}
+	<br>
+	{% if exists %}
+	<h3 align="right" style="margin-right: 20px">Proceed to checkout?
+	<a href="/checkout" class="btn btn-default" id="backtohomepagebutton">Checkout</a>	</h3>
+	{% endif %}
+
+	<footer class="footer" align="right" style="margin-right: 10px">
+            <p>&copy; Shop.com 2019</p>
+        </footer>
+	{% endblock %}
+
+</body>
+</html>
+ 
+ <style>
+    #backtohomepagebutton {
+        background-color: white;
+        border-radius: 2px;
+        border-color: black;
+        margin: 5px;
+    }
+	
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 10px
+    }
+	
+	html {
+		height: 100%;
+	}
+	
+	body {
+		background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+	}
+</style>

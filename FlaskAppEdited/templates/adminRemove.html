@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Remove a Product</title>
+    </head>
+    <body>
+        {% extends "template.html" %}
+        {% block content %}
+		{% if removed %}
+			<h2 align="center"><font color='red'>{{ removeName[0][0] }} has been removed from the purchasable inventory.</font></h2>
+        {% endif %}
+        <h1 align="center">Remove a Product</h1>
+        <h2 align="center">What product would you like to remove from the inventory?</h2>
+        <center>
+            <form action="{{ url_for('adminRemove')}}" method ='POST'>
+            ArticleID:
+            <select name='ArticleID'>
+                {% for item in items %}
+                <option>{{item[0]}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Remove">
+            </form>
+            
+            <br>
+            <br>
+            <a href="admin" class="btn btn-default" id="backtohomepagebutton">Back to Admin Dashboard</a>
+        </center>
+    
+    <br>
+    <h2 align="center">Product List</h2>   
+            <table id = "articleTable" align="center">
+                <tr>
+                    <th>ArticleID</th>
+                    <th>Article Name</th>
+                    <th>Seller</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                
+                {% for item in items %}
+                <tr>
+                    {% for attribute in item %}
+                    <td>{{attribute}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        
+        
+        
+            <footer class="footer" align="right">
+                    <p>&copy; Shop.com 2019</p>
+                </footer>
+    {% endblock %}
+    </body>
+</html>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 10px
+    }
+	
+    html {
+	height: 100%;
+    }
+	
+    body {
+	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    }
+</style>

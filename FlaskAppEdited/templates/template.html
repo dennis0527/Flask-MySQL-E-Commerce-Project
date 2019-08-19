@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Python Flask Bucket List App</title>
+  <!-- Bootstrap core CSS -->
+  <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <span class="navbar-brand" ><img src="https://lh3.googleusercontent.com/a4F7BDl4Bb3MckVejgtCynnOVG-xaaFTC7B9CCN1TEbzGtuJR9bn_cKCN1NWYXy0eA" style="height: 50px"></span>
+    <span class="navbar-brand" href="#">{{ session['username'] }}</span>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cart">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/review">Reviews</a>
+        </li>
+        <li class="nav-item">
+          <a href="/signin" class="nav-link">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a href="/signup" class="nav-link">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a href="/logout" class="nav-link" onclick="alertFunction()">Log Out</a>
+          </li>
+        </li>
+          <li class="nav-item">
+            <a href="/adminLogin" class="nav-link">Admin Login</a>
+          </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  {% block content %}
+  {% endblock %}
+
+</body>
+</html>
+
+<style>
+
+    #backtohomepagebutton {
+        background-color: white;
+        border-radius: 2px;
+        border-color: black;
+        margin: 5px;
+    }
+        label {
+            margin-right: 15px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 10px
+        }
+        
+        html {
+            min-height: 100%;
+        }
+        
+        body {
+            background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);  
+        }
+</style>
+
+<script>
+  function alertFunction() {
+    alert("You have logged out.");
+  }
+</script>

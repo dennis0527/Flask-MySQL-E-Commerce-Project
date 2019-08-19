@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Shop.com</title>
+ 
+ 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+    <link type="text/css" href="index.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+ 
+ 
+ 
+</head>
+ 
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <center>
+ 
+    <div class="container">
+        <!-- <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="/cart" class="btn btn-default button_style">Shopping Cart</a></li>
+                    <li role="presentation"><a href="/signup" class="btn btn-default button_style">Sign Up</a></li>
+					<li role="presentation"><a href="/adminLogin" class="btn btn-default button_style">Admin Login</a></li>
+                </ul>
+            </nav>
+        </div> -->
+ 
+        <div class="jumbotron" align="center" style="background-color: rgb(86, 148, 242); font-family: 'Pacifico', Helvecta, sans-serif;">
+            <h1 style="font-size: 75px">Welcome to Shop.com!</h1>
+        </div>
+ 
+                <h2>Product List</h4>
+                <p>See below for items available for purchase.</p>
+ 
+        
+            <table id = "articleTable">
+                <tr>
+                    <th>ArticleID</th>
+                    <th>Article Name</th>
+                    <th>Seller</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                {% for item in items %}
+                <tr>
+                    {% for attribute in item %}
+                    <td>{{attribute}}</td>
+                    {% endfor %}
+
+
+                </tr>
+                {% endfor %}
+            </table>
+			
+			<br>
+			<br>
+			
+			<h3 align="center">What would you like to purchase?</h3>
+            
+            <form action="{{url_for('buy') }}" method="POST"></m>
+			<p>
+            ArticleID:
+            <select id="articleidselect" name="inputAID">
+                {% for item in items %}
+                <option>{{item[0]}}</option>
+                {% endfor %}
+            </select>
+                <br>
+				<br>
+                <input type="submit" value="Buy">
+              </form>
+        
+		
+              <footer class="footer" align="right">
+                    <p>&copy; Shop.com 2019</p>
+                </footer>
+ 
+    </div>
+</center>
+{% endblock %}
+</body>
+ 
+</html>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 10px
+    }
+	.button_style {
+        background-color: white;
+        border-radius: 2px;
+        border-color: black;
+        margin: 5px;
+    }
+	/* html {
+		height: 100%;
+	} */
+	
+	body {
+		background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+	}
+</style>
+
+<script>
+
+</script>

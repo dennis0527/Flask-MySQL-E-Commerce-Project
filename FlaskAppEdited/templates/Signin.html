@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Sign In -- Shop.com</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link type="text/css" href="index.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+</head>
+ 
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <div class="container">
+        
+            <div class="jumbotron" align="center" style="background-color: rgb(86, 148, 242); font-family: 'Pacifico', Helvecta, sans-serif;">
+                    <h1 style="font-size: 75px">Sign in to your Shop.com account!</h1>
+                </div>
+        <p><b>{%if failed %}Wrong customer ID or email: either enter a valid customer ID and email address, or sign up {% endif %}</b></p>
+        <p><b>{%if succeeded %}Successful sign in!{% endif %}</b></p>
+            <form action="{{url_for('signin') }}" method="POST">
+                <label for="cidsignin">Customer ID:</label>
+                <input id="cidsignin" type="text" name="cidsignin" required>
+                <br>
+                <label for="emailaddress">Email Address:</label>
+                <input id="emailaddress" type="text" name="emailaddress" required>
+                <br>
+                <input type="submit" value="Sign In">
+            </form>
+        <!-- <a href="/" class="btn btn-default" id="backtohomepagebutton">Go back to home page</a> -->
+        <footer class="footer" align="right">
+            <p>&copy; Shop.com 2019</p>
+        </footer>
+ 
+    </div>
+    {% endblock %}
+</body>
+ 
+</html>
+
+<style>
+
+    #backtohomepagebutton {
+        background-color: white;
+        border-radius: 2px;
+        border-color: black;
+        margin: 5px;
+    }
+        label {
+            margin-right: 15px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 10px
+        }
+        
+        html {
+            height: 100%;
+        }
+        
+        body {
+            background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+        }
+    </style>

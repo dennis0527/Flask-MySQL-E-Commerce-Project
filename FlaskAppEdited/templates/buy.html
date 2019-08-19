@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Buying items</title>
+ 
+ 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link type="text/css" href="index.css" rel="stylesheet">
+
+ 
+</head>
+
+
+<body>
+        {% extends "template.html" %}
+        {% block content %}
+        {% if notSignedIn %}
+        <h1 style="margin-left: 20px">Please sign in or sign up before purchasing any items</h1>
+        {% else %}
+        <h1 style="margin-left: 20px">Added {{ items[0][0] }} to shopping cart of {{ username }}!</h1>
+        {% endif %}
+    
+    <a href="/" class="btn btn-default" id="backtohomepagebutton" style="margin-left: 20px">Go back to home page</a>
+    <footer class="footer" align="right" style="margin-right: 10px">
+            <p>&copy; Shop.com 2019</p>
+        </footer>
+    {% endblock %}
+</body>
+ 
+</html>
+
+<style>
+    #backtohomepagebutton {
+        background-color: white;
+        border-radius: 2px;
+        border-color: black;
+        margin: 5px;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 10px
+    }
+	
+	html {
+		height: 100%;
+	}
+	
+	body {
+		background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+	}
+</style>
+ 

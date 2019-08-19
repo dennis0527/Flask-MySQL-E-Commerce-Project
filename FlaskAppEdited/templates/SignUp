@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Shop.com</title>
+ 
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <link type="text/css" href="index.css" rel="stylesheet">
+ 
+ 
+ 
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="#">Shopping Cart</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+ 
+        <div class="jumbotron" align="center">
+            <h1>Welcome to Shop.com!</h1>
+        </div>
+ 
+                <h2>Product List</h4>
+                <p>See below for items available for purchase.</p>
+ 
+        
+            <table id = "articleTable">
+                <tr>
+                    <th>ArticleID</th>
+                    <th>Article Name</th>
+                    <th>Seller</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                {% for item in items %}
+                <tr>
+                    {% for attribute in item %}
+                    <td>{{attribute}}</td>
+                    {% endfor %}
+
+
+                </tr>
+                {% endfor %}
+            </table>
+			
+			<br>
+			<br>
+			
+			<h3 align="center">What would you like to purchase?</h3>
+            
+            <form action="{{url_for('buy') }}" method="POST"></m>
+			<p>
+            ArticleID:
+            <select id="articleidselect" name="inputAID">
+                {% for item in items %}
+                <option>{{item[0]}}</option>
+                {% endfor %}
+            </select>
+            <p id="articlename"></p>
+				<!--
+                Quantity: <input type="text">
+				</p>	-->
+				CustomerID: <input type="text" name="inputCID">
+				</p>
+				
+				<br>
+                <input type="submit" value="Buy">
+              </form>
+        
+		
+        <footer class="footer" align="right">
+            <p>&copy; Company 2019</p>
+        </footer>
+ 
+    </div>
+</body>
+ 
+</html>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 10px
+    }
+	
+	html {
+		height: 100%;
+	}
+	
+	body {
+		background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+	}
+</style>
+
+<script>
+
+</script>
